@@ -1,0 +1,146 @@
+/* industries */
+.industries { display: grid; gap: var(--s-4); }
+/* industry card: plain at rest; on hover a project image fades in behind it and the text turns white */
+.ind { position: relative; isolation: isolate; display: flex; align-items: flex-end; min-height: 20rem; padding: var(--s-8) calc(var(--s-8) + 3.5rem) var(--s-8) var(--s-8); overflow: hidden; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--white); color: inherit; text-decoration: none; transition: border-color 400ms ease, box-shadow 400ms ease; }
+.ind-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; opacity: 0; transform: scale(1.08); background: radial-gradient(circle at 78% 18%, rgb(255 255 255 / 0.22), transparent 45%), linear-gradient(150deg, var(--a), var(--b)); transition: opacity 500ms ease, transform 900ms cubic-bezier(.16, 1, .3, 1); }
+.ind-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(5 8 20 / 0) 25%, rgb(5 8 20 / 0.55) 55%, rgb(5 8 20 / 0.9) 100%); }
+.ind-bg .stage-m { position: absolute; inset: var(--s-3) var(--s-4) 44% var(--s-4); display: flex; align-items: center; justify-content: center; gap: var(--s-4); }
+.ind-bg .stage-m > * { align-self: center; transform: rotate(-6deg) translateY(var(--s-4)) scale(0.82); transition: transform 900ms cubic-bezier(.16, 1, .3, 1); }
+.ind-bg .m-phone { border-bottom: 4px solid #0f1b4d; border-radius: 1.25rem; height: 12rem; padding-bottom: 0.625rem; }
+.ind-bg .m-browser, .ind-bg .lg-map { border-radius: 0.75rem; }
+/* a real screenshot can replace any mockup: put <img class="shot" src="projects/fintech.jpg" alt=""> in .ind-bg */
+.ind-bg .shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ind h3 { font-size: clamp(1.375rem, 1.1rem + 0.8vw, 1.75rem); font-weight: 500; transition: color 400ms ease; }
+.ind p { margin-top: var(--s-3); font-size: var(--fs-sm); color: var(--muted); transition: color 400ms ease; }
+.ind-go { position: absolute; right: var(--s-8); bottom: var(--s-8); isolation: isolate; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; overflow: hidden; border: 1px solid var(--line-2); border-radius: 50%; color: var(--ink); transition: border-color 400ms ease; }
+.ind-go::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 50%; background: var(--white); transform: translateY(101%); transition: transform 450ms cubic-bezier(.65, 0, .35, 1); }
+.ind-go svg { width: 1.125rem; height: 1.125rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 450ms cubic-bezier(.65, 0, .35, 1); }
+.ind:hover, .ind:focus-visible { border-color: transparent; box-shadow: var(--shadow); }
+.ind:hover .ind-bg, .ind:focus-visible .ind-bg { opacity: 1; transform: none; }
+.ind:hover .ind-bg .stage-m > *, .ind:focus-visible .ind-bg .stage-m > * { transform: rotate(-4deg) scale(0.82); }
+.ind:hover h3, .ind:focus-visible h3 { color: var(--white); }
+.ind:hover p, .ind:focus-visible p { color: rgb(255 255 255 / 0.85); }
+.ind:hover .ind-go, .ind:focus-visible .ind-go { border-color: var(--white); }
+.ind:hover .ind-go::before, .ind:focus-visible .ind-go::before { transform: translateY(0); }
+.ind:hover .ind-go svg, .ind:focus-visible .ind-go svg { transform: translate(2px, -2px); }
+.ind:focus-visible { outline-offset: 4px; }
+
+/* shared mock pieces */
+.m-phone { width: 8.5rem; height: 11.5rem; padding: 0.875rem 0.625rem 0; border: 4px solid #0f1b4d; border-bottom: 0; border-radius: 1.25rem 1.25rem 0 0; background: #fff; align-self: end; display: grid; gap: 0.4rem; align-content: start; box-shadow: 0 1rem 2rem -1rem rgb(0 0 0 / 0.5); }
+.m-browser { width: 100%; max-width: 15rem; height: 10.5rem; align-self: end; border-radius: 0.75rem 0.75rem 0 0; background: #fff; overflow: hidden; box-shadow: 0 1rem 2rem -1rem rgb(0 0 0 / 0.5); }
+.m-browser .bar { display: flex; gap: 0.25rem; padding: 0.4rem 0.5rem; background: #eef1f8; }
+.m-browser .bar i { width: 0.35rem; height: 0.35rem; border-radius: 50%; background: #c9cee0; }
+.m-ln { display: block; height: 0.3rem; border-radius: var(--pill); background: #e3e6f0; }
+.m-ln.s { width: 55%; }
+.m-ln.dark { background: #0f1b4d; width: 60%; height: 0.375rem; }
+.ind-bg * { animation-play-state: paused; }
+.ind:hover .ind-bg *, .ind:focus-visible .ind-bg * { animation-play-state: running; }
+@keyframes pop-in { from { opacity: 0; transform: translateY(0.5rem); } }
+
+/* fintech */
+.fin-card { height: 3.25rem; padding: 0.4rem 0.5rem; border-radius: 0.5rem; background: linear-gradient(135deg, var(--blue), var(--sky)); color: #fff; font-size: 0.5rem; font-weight: 600; }
+.fin-card b { display: block; font-size: 0.9375rem; letter-spacing: -0.02em; }
+.fin-row { display: grid; grid-template-columns: 1rem 1fr 1.5rem; align-items: center; gap: 0.35rem; animation: pop-in 500ms ease both; animation-delay: calc(var(--n) * 150ms + 350ms); }
+.fin-row i { width: 1rem; height: 1rem; border-radius: 0.3rem; background: #eef1ff; }
+.fin-row u { height: 0.3rem; border-radius: var(--pill); background: #0f1b4d; opacity: 0.6; }
+.fin-row u.in { background: #17a36b; }
+/* healthcare */
+.hc-doc { display: flex; align-items: center; gap: 0.4rem; padding: 0.4rem; border-radius: 0.5rem; background: #f6f7fb; }
+.hc-doc i { width: 1.375rem; height: 1.375rem; border-radius: 50%; background: linear-gradient(135deg, var(--amber), var(--amber-2)); }
+.hc-doc div { flex: 1; display: grid; gap: 0.2rem; }
+.hc-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.25rem; }
+.hc-slots i { height: 0.875rem; border-radius: 0.3rem; border: 1px solid #e3e6f0; }
+.hc-slots i.on { background: var(--blue); border-color: var(--blue); animation: pulse-slot 1.6s ease-in-out infinite; }
+@keyframes pulse-slot { 50% { box-shadow: 0 0 0 3px rgb(57 85 254 / 0.25); } }
+.hc-btn { height: 1.125rem; border-radius: var(--pill); background: var(--amber); }
+/* e-commerce */
+.ec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; padding: 0.5rem; }
+.ec-item { display: grid; gap: 0.2rem; animation: pop-in 500ms ease both; animation-delay: calc(var(--n) * 120ms + 300ms); }
+.ec-item i { height: 2.25rem; border-radius: 0.4rem; background: linear-gradient(135deg, #ffe7a8, var(--amber)); }
+.ec-item:nth-child(2) i { background: linear-gradient(135deg, #cfe9ff, var(--sky)); }
+.ec-item:nth-child(3) i { background: linear-gradient(135deg, #dfe4ff, var(--blue-2)); }
+.ec-item:nth-child(4) i { background: linear-gradient(135deg, #ffe0c2, #ff9f43); }
+.ec-item u { width: 40%; height: 0.3rem; border-radius: var(--pill); background: #0f1b4d; }
+/* SaaS dashboard */
+.sa-body { display: grid; grid-template-columns: 2.25rem 1fr; gap: 0.4rem; padding: 0.4rem; height: calc(100% - 1.15rem); }
+.sa-side { display: grid; gap: 0.3rem; align-content: start; padding-top: 0.2rem; }
+.sa-side i { height: 0.3rem; border-radius: var(--pill); background: #e3e6f0; }
+.sa-side i:first-child { background: var(--blue); }
+.sa-kpi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.25rem; }
+.sa-kpi i { height: 1.25rem; border-radius: 0.3rem; background: #f6f7fb; border: 1px solid #e3e6f0; }
+.sa-kpi i:first-child { background: #eef1ff; border-color: #cdd5ff; }
+.sa-chart { width: 100%; height: 4.5rem; margin-top: 0.3rem; }
+.sa-chart path.l { fill: none; stroke: var(--blue); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw-l 1.6s ease 300ms forwards; }
+.sa-chart path.a { fill: url(#sa-fill); opacity: 0.5; }
+@keyframes draw-l { to { stroke-dashoffset: 0; } }
+/* logistics */
+.lg-map { position: relative; width: 100%; max-width: 15rem; height: 10.5rem; align-self: end; border-radius: 0.75rem 0.75rem 0 0; overflow: hidden; background: #eaf3ff; box-shadow: 0 1rem 2rem -1rem rgb(0 0 0 / 0.5); background-image: linear-gradient(#d6e6fb 1px, transparent 1px), linear-gradient(90deg, #d6e6fb 1px, transparent 1px); background-size: 1.25rem 1.25rem; }
+.lg-map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lg-map .route { fill: none; stroke: var(--blue); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 6 6; animation: dash 1.2s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -12; } }
+.lg-map .truck { offset-path: path("M20 140 C70 120 60 70 110 70 S170 40 210 30"); offset-rotate: 0deg; animation: drive 4s ease-in-out infinite; }
+@keyframes drive { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+.lg-eta { position: absolute; left: 0.5rem; top: 0.5rem; padding: 0.15rem 0.45rem; border-radius: var(--pill); background: #fff; font-size: 0.5625rem; font-weight: 700; color: #0f1b4d; box-shadow: var(--shadow-sm); }
+/* education */
+.ed-hero { height: 2.75rem; border-radius: 0.5rem; background: linear-gradient(135deg, #7c5cff, var(--blue-2)); }
+.ed-prog { height: 0.375rem; border-radius: var(--pill); background: #e3e6f0; overflow: hidden; }
+.ed-prog i { display: block; height: 100%; width: 68%; background: var(--amber); transform-origin: 0 50%; animation: grow-x 1.4s cubic-bezier(.16, 1, .3, 1) 300ms both; }
+@keyframes grow-x { from { transform: scaleX(0); } }
+.ed-row { display: grid; grid-template-columns: 0.75rem 1fr; align-items: center; gap: 0.35rem; }
+.ed-row i { width: 0.75rem; height: 0.75rem; border-radius: 50%; border: 1.5px solid #c9cee0; }
+.ed-row i.ok { background: #17a36b; border-color: #17a36b; }
+
+/* touch screens have no hover, so they show the project image all the time */
+@media (hover: none) {
+  .ind { border-color: transparent; }
+  .ind-bg { opacity: 1; transform: none; }
+  .ind-bg * { animation-play-state: running; }
+  .ind h3 { color: var(--white); }
+  .ind p { color: rgb(255 255 255 / 0.85); }
+  .ind-go { border-color: var(--white); }
+  .ind-go::before { transform: none; }
+}
+@media (min-width: 40rem) { .industries { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 64rem) { .industries { grid-template-columns: repeat(3, 1fr); } }
+
+/* featured RMG card: spans the full row, lists ERP modules */
+.ind-tag { display: inline-block; margin-bottom: var(--s-3); padding: 0.2rem 0.65rem; border-radius: var(--pill); background: #e3f6ee; color: #0c6b4c; font-size: var(--fs-xs); font-weight: 700; transition: background 400ms ease, color 400ms ease; }
+.ind-mods { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-4); padding: 0; list-style: none; }
+.ind-mods li { padding: 0.2rem 0.7rem; border: 1px solid var(--line-2); border-radius: var(--pill); font-size: var(--fs-xs); color: var(--muted); transition: border-color 400ms ease, color 400ms ease; }
+.ind:hover .ind-tag, .ind:focus-visible .ind-tag { background: rgb(255 255 255 / 0.18); color: var(--white); }
+.ind:hover .ind-mods li, .ind:focus-visible .ind-mods li { border-color: rgb(255 255 255 / 0.4); color: var(--white); }
+.ind-wide { min-height: 26rem; }
+.ind-wide > div:not(.ind-bg) { max-width: 40rem; }
+@media (min-width: 40rem) { .ind-wide { grid-column: 1 / -1; } }
+@media (min-width: 64rem) {
+  .ind-wide { align-items: center; min-height: 22rem; }
+  .ind-wide .ind-bg .stage-m { inset: var(--s-6) var(--s-8) var(--s-6) 52%; }
+  .ind-wide .ind-bg::after { background: linear-gradient(90deg, rgb(5 8 20 / 0.92) 0%, rgb(5 8 20 / 0.78) 42%, rgb(5 8 20 / 0.12) 68%); }
+  .ind-wide > div:not(.ind-bg) { max-width: 46%; }
+}
+.ind-wide .m-browser.erp { max-width: 22rem; height: 13rem; }
+
+/* RMG ERP dashboard mock */
+.m-browser.erp { height: 12rem; }
+.erp-body { display: grid; gap: 0.4rem; padding: 0.45rem; font-size: 0.5rem; color: #0f1b4d; }
+.erp-kpi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.3rem; }
+.erp-kpi span { padding: 0.25rem 0.3rem; border: 1px solid #e3e6f0; border-radius: 0.3rem; background: #f6f7fb; color: #5a6178; line-height: 1.2; }
+.erp-kpi span:first-child { background: #e3f6ee; border-color: #b9e8d4; }
+.erp-kpi b { display: block; font-size: 0.75rem; color: #0f1b4d; letter-spacing: -0.02em; }
+.erp-lines { display: grid; gap: 0.22rem; }
+.erp-lines div { display: grid; grid-template-columns: 2.1rem 1fr; align-items: center; gap: 0.3rem; }
+.erp-lines em { font-style: normal; font-weight: 700; font-size: 0.45rem; color: #5a6178; }
+.erp-lines i { position: relative; height: 0.32rem; border-radius: var(--pill); background: #e3e6f0; overflow: hidden; }
+.erp-lines i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--v); border-radius: inherit; background: #1fa37a; transform-origin: 0 50%; animation: grow-x 1.2s cubic-bezier(.16, 1, .3, 1) 300ms both; }
+.erp-lines .warn i::after { background: var(--amber); }
+.erp-ai { display: flex; gap: 0.3rem; align-items: center; padding: 0.3rem; border-radius: 0.3rem; background: #eef1ff; line-height: 1.25; animation: pop-in 500ms ease 900ms both; }
+.erp-ai b { flex: none; padding: 0.05rem 0.25rem; border-radius: 0.2rem; background: var(--blue); color: #fff; font-size: 0.45rem; }
+/* below desktop the ERP mock sits above the text instead of behind it */
+@media (max-width: 63.99rem) {
+  .ind-wide { padding-top: 16rem; }
+  .ind-wide .ind-bg .stage-m { inset: var(--s-4) var(--s-4) auto; height: 14rem; }
+}
+@media (hover: none) {
+  .ind-tag { background: rgb(255 255 255 / 0.18); color: var(--white); }
+  .ind-mods li { border-color: rgb(255 255 255 / 0.4); color: var(--white); }
+}

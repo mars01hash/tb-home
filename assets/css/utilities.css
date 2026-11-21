@@ -1,0 +1,10 @@
+.to-top { position: fixed; right: var(--s-4); bottom: var(--s-4); z-index: 20; display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; background: var(--navy); color: var(--white); text-decoration: none; box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(var(--s-4)); transition: opacity var(--fast), visibility var(--fast), transform var(--fast), background var(--fast); }
+.to-top.show { opacity: 1; visibility: visible; transform: none; }
+.to-top.show:hover { background: var(--blue); transform: translateY(-3px); }
+
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: 0ms !important; }
+  .js [data-rv] { opacity: 1; transform: none; }
+}

@@ -1,0 +1,28 @@
+# Netlify settings for techbeez.tech.
+# Every push to master runs the build below; if it fails, the live site is left unchanged.
+
+[build]
+  command = "python3 tools/build.py"
+  publish = "dist"
+
+[build.environment]
+  PYTHON_VERSION = "3.12"
+
+# Security headers for every page.
+# The Content-Security-Policy allows only what the site uses: Google Fonts, Unsplash photos,
+# Simple Icons logos on jsDelivr and the Web3Forms contact API. Add a host here if you add a service.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://cdn.jsdelivr.net; connect-src 'self' https://api.web3forms.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# Styles, scripts and images: cache for a day, then check for a newer version.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"

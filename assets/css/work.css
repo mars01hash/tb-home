@@ -1,0 +1,32 @@
+/* Work index and case study pages (work/*.html). Builds on article.css and insights.css. */
+
+/* listing cards: .post plus a client name and headline result */
+.case .post-client { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.case-metric { display: flex; align-items: baseline; gap: var(--s-2); margin-top: auto; padding-top: var(--s-3); border-top: 1px solid var(--line); }
+.case-metric b { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.03em; color: var(--ink); }
+.case-metric span { font-size: var(--fs-xs); color: var(--muted); }
+.posts .case { height: 100%; }
+.i-empty { padding: var(--s-8); border: 1px dashed var(--line-2); border-radius: var(--r-lg); color: var(--muted); text-align: center; }
+
+/* case study: results row */
+.c-results { display: grid; gap: var(--s-4); max-width: 72rem; margin: var(--s-12) auto 0; }
+.c-results div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: var(--s-1); padding: var(--s-6); border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--paper); }
+.c-results dd { margin: 0; font-size: clamp(2rem, 1.5rem + 1.6vw, 2.75rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
+.c-results dt { font-size: var(--fs-sm); color: var(--muted); }
+@media (min-width: 48rem) { .c-results { grid-template-columns: repeat(3, 1fr); } }
+
+/* case study: project facts beside the story */
+.c-facts { display: grid; gap: var(--s-4); align-content: start; padding: var(--s-6); border: 1px solid var(--line); border-radius: var(--r-lg); font-size: var(--fs-sm); }
+.c-facts div { display: grid; gap: var(--s-1); }
+.c-facts dt { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.c-facts dd { margin: 0; color: var(--ink); }
+@media (min-width: 64rem) { .c-facts { position: sticky; top: 7rem; } }
+
+.c-chips { display: flex; flex-wrap: wrap; gap: var(--s-2); padding: 0 !important; list-style: none !important; }
+.c-chips li { padding: var(--s-1) var(--s-3); border: 1px solid var(--line-2); border-radius: var(--pill); font-size: var(--fs-sm); }
+.c-chips li::marker { content: none; }
+
+.c-quote { padding: var(--s-8); border-radius: var(--r-lg); background: var(--navy); color: rgb(255 255 255 / 0.9); }
+.c-quote blockquote p { font-size: 1.25rem; line-height: 1.55; color: var(--white); }
+.c-quote figcaption { margin-top: var(--s-4); font-size: var(--fs-sm); }
+.c-quote figcaption strong { color: var(--white); }

@@ -1,0 +1,37 @@
+/* process: heading + isometric stage icons on top, gradient description cards below */
+.pgrid { display: grid; border: 1px solid var(--line); background: var(--white); }
+.p-title { display: flex; align-items: center; padding: clamp(var(--s-8), 4vw, var(--s-12)) var(--s-8); border-bottom: 1px solid var(--line); }
+.p-title h2 { font-size: clamp(1.875rem, 1.1rem + 2.1vw, 2.75rem); }
+.p-icons { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
+.p-icon { display: flex; flex-direction: column; align-items: center; gap: var(--s-6); padding: var(--s-8) var(--s-2); text-align: center; cursor: default; }
+.p-icon span { font-size: clamp(1rem, 0.85rem + 0.6vw, 1.375rem); font-weight: 500; color: var(--ink); transition: color var(--fast); }
+.p-icon svg { width: clamp(5rem, 3rem + 6vw, 7.5rem); height: auto; overflow: visible; }
+.iso { fill: #fff; stroke: #2a2b3a; stroke-width: 1.1; stroke-linejoin: round; }
+.iso .shade { fill: #f3f4f8; }
+.iso .shade-2 { fill: #e9ebf2; }
+.p-icon .lift, .p-icon .bob { transition: transform 500ms cubic-bezier(.2, .8, .2, 1); }
+.p-icon:hover span, .pgrid[data-on="1"] .p-icon:nth-child(1) span, .pgrid[data-on="2"] .p-icon:nth-child(2) span, .pgrid[data-on="3"] .p-icon:nth-child(3) span { color: var(--blue); }
+.p-icon:hover .lift { transform: translateY(-9px); }
+.p-icon:hover .bob { animation: bob-iso 900ms ease-in-out both; animation-delay: calc(var(--n) * 70ms); }
+@keyframes bob-iso { 40% { transform: translateY(-7px); } }
+.gear-spin { transform-box: fill-box; transform-origin: center; transition: transform 1.6s cubic-bezier(.2, .8, .2, 1); }
+.p-icon:hover .gear-spin { transform: rotate(72deg); }
+
+.p-cards { display: grid; }
+.p-card { position: relative; isolation: isolate; overflow: hidden; display: grid; align-content: start; gap: var(--s-6); min-height: 13.5rem; padding: clamp(var(--s-8), 4vw, var(--s-12)) var(--s-8); background: var(--g); }
+.p-card + .p-card { border-top: 1px solid var(--line); }
+.p-card::before { content: ""; position: absolute; z-index: -1; width: 70%; aspect-ratio: 1; right: -10%; top: -45%; border-radius: 50%; background: radial-gradient(circle, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0) 65%); animation: glow-drift 14s ease-in-out infinite alternate; }
+.p-card:nth-child(2)::before { left: -15%; right: auto; animation-duration: 17s; }
+@keyframes glow-drift { to { transform: translate(-18%, 22%) scale(1.15); } }
+.p-card h3 { font-size: clamp(1.25rem, 1rem + 0.6vw, 1.5rem); font-weight: 600; }
+.p-card p { max-width: 34rem; color: #3a3c4e; }
+.p-amber { --g: linear-gradient(180deg, #fff7e0 0%, #fde7a8 45%, #f7c95b 100%); }
+.p-blue { --g: linear-gradient(160deg, #eef8ff 0%, #bfe3fb 40%, #8ec3f0 75%, #6c9fdc 100%); }
+.p-more { margin-top: var(--s-8); }
+@media (min-width: 56rem) {
+  .pgrid { grid-template-columns: 1fr 2fr; }
+  .p-title { border-right: 1px solid var(--line); }
+  .p-cards { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); }
+  .p-card + .p-card { border-top: 0; border-left: 1px solid rgb(255 255 255 / 0.6); }
+}
+@keyframes float { 50% { transform: translateY(-12px) rotate(10deg); } }

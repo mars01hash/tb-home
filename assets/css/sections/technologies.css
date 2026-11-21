@@ -1,0 +1,25 @@
+/* technologies: dark stage, model pills, hairline logo grid */
+.stage { background: #09090b; color: var(--white); }
+.stage .head h2 { color: var(--white); }
+.stage .head p { color: rgb(255 255 255 / 0.7); }
+.models { display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: var(--s-3); max-width: 64rem; margin: 0 auto; }
+.model { display: flex; align-items: center; justify-content: center; gap: var(--s-3); min-height: 3rem; padding: var(--s-2) var(--s-6); border: 1px solid rgb(255 255 255 / 0.15); border-radius: var(--pill); font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; transition: border-color var(--fast), background var(--fast); }
+.model:hover { border-color: rgb(255 255 255 / 0.4); background: rgb(255 255 255 / 0.05); }
+.model .ti { width: 1.5rem; height: 1.5rem; }
+.model svg { width: 1.5rem; height: 1.5rem; fill: none; stroke: currentColor; stroke-width: 1.6; }
+@media (min-width: 40rem) { .models { flex-direction: row; flex-wrap: wrap; } }
+
+/* brand icons are Simple Icons (CC0), tinted with each brand colour through a mask */
+.ti { display: block; flex: none; width: 2.5rem; height: 2.5rem; background: var(--c); -webkit-mask: var(--u) center / contain no-repeat; mask: var(--u) center / contain no-repeat; }
+.ti-word { display: grid; place-items: center; height: 2.5rem; font-size: 1.375rem; font-weight: 800; letter-spacing: -0.04em; color: var(--c); }
+.logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: var(--s-12); overflow: hidden; border: 1px solid rgb(255 255 255 / 0.15); border-radius: var(--r-md); background: rgb(255 255 255 / 0.15); }
+.logo-grid li { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s-3); min-height: 7rem; padding: var(--s-6) var(--s-2); background: #09090b; transition: background var(--fast); }
+.logo-grid li:hover { background: #141418; }
+.logo-grid li .ti, .logo-grid li .ti-word { transition: transform 300ms cubic-bezier(.2, .7, .2, 1); }
+.logo-grid li:hover .ti, .logo-grid li:hover .ti-word { transform: translateY(-3px) scale(1.08); }
+.logo-grid span { font-size: var(--fs-xs); line-height: 1.2; letter-spacing: 0.02em; text-transform: lowercase; text-align: center; color: rgb(255 255 255 / 0.7); }
+.js .logo-grid li { opacity: 0; transition: opacity 600ms ease, background var(--fast); transition-delay: calc(var(--n, 0) * 40ms), 0ms; }
+.js .logo-grid.in li { opacity: 1; }
+@media (min-width: 40rem) { .logo-grid li { min-height: 8rem; } .logo-grid span { font-size: var(--fs-sm); } }
+@media (min-width: 48rem) { .logo-grid { grid-template-columns: repeat(6, 1fr); } }
+@media (min-width: 64rem) { .logo-grid li { min-height: 9rem; } }

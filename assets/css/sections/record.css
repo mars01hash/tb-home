@@ -1,0 +1,15 @@
+/* track record: a short statement and four big numbers, nothing else */
+.band { position: relative; overflow: hidden; padding-block: var(--sec); background: var(--white); color: var(--text); }
+.rec { display: grid; gap: var(--s-12); align-items: end; }
+.rec h2 { max-width: 13ch; color: var(--ink); }
+.rec-nums { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+.rec-nums div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: var(--s-2); padding: var(--s-8) var(--s-4) 0 0; }
+.rec-nums div + div { padding-left: var(--s-6); border-left: 1px solid var(--line); }
+.rec-nums div:nth-child(3) { padding-left: 0; border-left: 0; }
+.rec-nums dd { white-space: nowrap; font-size: clamp(2.5rem, 1.4rem + 3vw, 4.25rem); font-weight: 600; line-height: 1; letter-spacing: -0.045em; background: linear-gradient(100deg, #3438d8, #3955fe 45%, #8a3cf6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.rec-nums dt { font-size: var(--fs-sm); color: var(--muted); }
+@media (min-width: 64rem) {
+  .rec { grid-template-columns: 3fr 8fr; column-gap: var(--s-12); }
+  .rec-nums { grid-template-columns: repeat(4, 1fr); }
+  .rec-nums div:nth-child(3) { padding-left: var(--s-6); border-left: 1px solid var(--line); }
+}
